@@ -15,7 +15,7 @@ from utils.timer import Timer
 
 parser = argparse.ArgumentParser(description='FaceBoxes')
 
-parser.add_argument('-m', '--trained_model', default='weights/Final_FaceBoxes.pth',
+parser.add_argument('-m', '--trained_model', default='weights/Final_FaceBoxesV2.pth',
                     type=str, help='Trained state_dict file path to open')
 parser.add_argument('--save_folder', default='eval/', type=str, help='Dir to save results')
 parser.add_argument('--cpu', action="store_true", default=False, help='Use cpu inference')
@@ -68,7 +68,7 @@ def load_model(model, pretrained_path, load_to_cpu):
 if __name__ == '__main__':
     torch.set_grad_enabled(False)
     # net and model
-    net = FaceBoxes(phase='test', size=None, num_classes=2)    # initialize detector
+    net = FaceBoxesV2(phase='test', size=None, num_classes=2)    # initialize detector
     net = load_model(net, args.trained_model, args.cpu)
     net.eval()
     print('Finished loading model!')
